@@ -15,12 +15,15 @@ namespace Slot_Machine
             int min = 1;
             int max = 3;
             Random randNum = new Random();
-            for (int x = 0; x < slot.GetLength(0); x += 1)
+            //use for loops to fill the array with random numbers
+
+            for (int x = 0; x < slot.GetLength(0); x++)
             {
-                for (int y = 0; y < slot.GetLength(1); y += 1)
+                for (int y = 0; y < slot.GetLength(1); y++)
                 {
                     Console.Write(slot[x, y]);
                 }
+                Console.WriteLine();
             }
 
         }
