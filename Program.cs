@@ -21,14 +21,12 @@ namespace Slot_Machine
             int[][] jCombination = new int[3][] { combination1, combination2, combination3 };
             int min = 1;
             int max = 4;
-            int numberChoosen = '0';
             string bettingstring = "";
             int bettingint = 0;
-            char bettingchar = '0';
             int jackpot = 100;
 
             int counter = 0;
-            while (jackpot!=0)
+            while (jackpot != 0)
             {
                 Random randNum = new Random();
                 Console.WriteLine($"The Jackpot is: {jackpot} €");
@@ -44,7 +42,7 @@ namespace Slot_Machine
                         {
                             slot[i] = randNum.Next(min, max);
                             jOutput[i][y] = slot[i];
-                            Console.Write($"{slot[i]}");
+                            Console.Write($"{slot[i]} ");
                         }
                         Console.WriteLine();
                     }
@@ -59,65 +57,56 @@ namespace Slot_Machine
                         jOutput[i][1] == jCombination[0][1] &&
                         jOutput[i][2] == jCombination[0][2])
                     {
-                        prize = bettingint +1;
-                        jackpot = jackpot - prize;
+                        prize = prize + 1;
+
                     }
 
                     if (jOutput[i][0] == jCombination[1][0] &&
                         jOutput[i][1] == jCombination[1][1] &&
                         jOutput[i][2] == jCombination[1][2])
                     {
-                        prize = bettingint +2;
-                        jackpot = jackpot - prize;
+                        prize = prize + 2;
+
                     }
 
                     if (jOutput[i][0] == jCombination[2][0] &&
                         jOutput[i][1] == jCombination[2][1] &&
                         jOutput[i][2] == jCombination[2][2])
                     {
-                        prize = bettingint +3;
-                        jackpot = jackpot - prize;
+                        prize = bettingint + 3;
+ 
                     }
-                    if ((jOutput[i][0] == jCombination[0][0] &&
-                        jOutput[i][1] == jCombination[0][1] &&
-                        jOutput[i][2] == jCombination[0][2])&&((jOutput[i][0] == jCombination[2][0] &&
-                        jOutput[i][1] == jCombination[2][1] &&
-                        jOutput[i][2] == jCombination[2][2])&& (jOutput[i][0] == jCombination[2][0] &&
-                        jOutput[i][1] == jCombination[2][1] &&
-                        jOutput[i][2] == jCombination[2][2])))
-                        {
-                        prize = bettingint +10;
-                    }
-
-                        if (jOutput[0][0] == jCombination[0][0] &&
-                        jOutput[0][1] == jCombination[0][1] &&
-                        jOutput[0][2] == jCombination[0][2] &&
-                        jOutput[1][0] == jCombination[1][0] &&
-                        jOutput[1][1] == jCombination[1][1] &&
-                        jOutput[1][2] == jCombination[1][2] &&
-                        jOutput[2][0] == jCombination[2][0] &&
-                        jOutput[2][1] == jCombination[2][1] &&
-                        jOutput[2][2] == jCombination[2][2])
+                    
+                }
+                for (int i = 0;i < 3;i++)
+                {
+                    for (int j = 0;j < 3;j++)
                     {
-                        prize = jackpot;
-                        jackpot = 0;
-                    }
-                        if (jOutput[0][0] == jOutput[1][1] && jOutput[2][2] == jOutput[1][1])
+                        if(jOutput[i][j] ==jCombination[i][j]&&
+                        jOutput[i][j] == jCombination[i][j]&&
+                        jOutput[i][j]==jCombination[i][j])
                         {
-                        prize = jOutput[0][0]*3;
+                            prize = jackpot;
+                        }
                     }
-
                 }
 
+                    if (jOutput[0][0]== jOutput[1][1]&&jOutput[1][1]==jOutput[2][2])//this rewards the user for diagonals combination
+                {
+                    prize= jOutput[0][0];
+                }
+                if (jOutput[0][2] == jOutput[1][1] && jOutput[1][1] == jOutput[2][0])//this rewards the user for diagonals combination
+                {
+                    prize=jOutput[0][2];
+                }
+                jackpot = jackpot - prize;
                 Console.WriteLine($"You win {prize} €");
                 prize = 0;
-
-
-
             }
         }
     }
 }
-            
+
+
 
 
