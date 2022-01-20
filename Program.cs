@@ -24,8 +24,8 @@ namespace Slot_Machine
             string bettingstring = "";
             int bettingint = 0;
             int jackpot = 100;
-
             int counter = 0;
+
             while (jackpot != 0)
             {
                 Random randNum = new Random();
@@ -80,15 +80,19 @@ namespace Slot_Machine
                 }
                 for (int i = 0;i < 3;i++)
                 {
-                    for (int j = 0;j < 3;j++)
+
+                    for (int j = 0;j < 3;j++)//with this loop the program check if user's won the jackpot
                     {
-                        if(jOutput[i][j] ==jCombination[i][j]&&
-                        jOutput[i][j] == jCombination[i][j]&&
-                        jOutput[i][j]==jCombination[i][j])
+                        if(jOutput[i][j] ==jCombination[i][j])
                         {
-                            prize = jackpot;
+                            counter++;
                         }
                     }
+                    if (counter ==9)
+                    {
+                        prize = jackpot;
+                    }
+                    counter = counter * 0;
                 }
 
                     if (jOutput[0][0]== jOutput[1][1]&&jOutput[1][1]==jOutput[2][2])//this rewards the user for diagonals combination
