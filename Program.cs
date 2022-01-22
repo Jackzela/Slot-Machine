@@ -25,7 +25,6 @@ using System.Threading.Tasks;
                 int bettingint = 0;
                 int jackpot = 100;
                 int counter = 0;
-                UIMethods
                 while (jackpot != 0)
                 {
                     Random randNum = new Random();

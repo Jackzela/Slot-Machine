@@ -1,15 +1,16 @@
 ﻿using System;
-using Slot_Machine
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Slot_Machine
 {
-
-		public static class UIMethods
-		{
-			public static void displaySlotMachinsOutput()
+    public static class UIMethods
+    {
+        public static void displaySlotOutput()
         {
-			Console.Writeline ($"{}")
+            Console.WriteLine("H");
         }
-	
-	}
-
+    }
 }
