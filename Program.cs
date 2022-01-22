@@ -92,7 +92,7 @@ namespace Slot_Machine
                     {
                         prize = jackpot;
                     }
-                    counter = counter * 0;
+                    counter = 0;
                 }
 
                     if (jOutput[0][0]== jOutput[1][1]&&jOutput[1][1]==jOutput[2][2])//this rewards the user for diagonals combination
