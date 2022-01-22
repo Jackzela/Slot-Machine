@@ -1,8 +1,15 @@
 ﻿using System;
-
-public class Class1
+using Slot_Machine
+namespace Slot_Machine
 {
-	public Class1()
-	{
+
+		public static class UIMethods
+		{
+			public static void displaySlotMachinsOutput()
+        {
+			Console.Writeline ($"{}")
+        }
+	
 	}
+
 }
