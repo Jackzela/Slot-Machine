@@ -8,9 +8,24 @@ namespace Slot_Machine
 {
     public static class UIMethods
     {
-        public static void displaySlotOutput()
+        public static void WelcomeMessage(int jack)
         {
-            Console.WriteLine("H");
+            Console.WriteLine($"The Jackpot is: {jack} €");
+            Console.WriteLine("Insert coin!");
+        }
+
+        public static int getBetting()
+        {
+            int betInt = 0;
+            string betString = Console.ReadLine();
+            betInt = int.Parse(betString);
+            return betInt;
+
+        }
+
+        public static void DisplaySlotMachine(int[][] slots)
+        {
+            //TODO: Implementation
         }
     }
 }
