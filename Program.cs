@@ -109,11 +109,32 @@ namespace Slot_Machine
             }
         }
 
-        //public static int[][] GenerateSlots()
-        //{
-        //    //TODO: Random number genertor , etc...
-        //    return 5;
-        //}
+        public static int[][] GenerateSlots()
+        {
+            Random randNum = new Random();
+
+            int min = 1;
+            int max = 4;
+            int[] slot = new int[3];
+            int[] Output1 = new int[3];
+            int[] Output2 = new int[3];
+            int[] Output3 = new int[3];
+            int[][] jOutput = new int[3][] { Output1, Output2, Output3 };
+            for (int y = 0; y < 3; y++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (y = 0; y < 3; y++)
+                    {
+                        slot[i] = randNum.Next(min, max);
+                        jOutput[i][y] = slot[i];
+
+                    }
+
+                }
+            }
+            return jOutput;
+        }
     }
 }
 

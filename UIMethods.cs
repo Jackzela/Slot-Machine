@@ -25,7 +25,12 @@ namespace Slot_Machine
 
         public static void DisplaySlotMachine(int[][] slots)
         {
-            //TODO: Implementation
+            for (int i = 0; i<3 ; i++)
+            {
+                Console.WriteLine(slots);
+            }
+            
         }
+        
     }
 }
