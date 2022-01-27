@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Slot_Machine
 {
+    
     public static class UIMethods
     {
+        
         public static void WelcomeMessage(int jack)
         {
             Console.WriteLine($"The Jackpot is: {jack} €");

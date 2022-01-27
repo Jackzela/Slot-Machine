@@ -25,8 +25,11 @@ namespace Slot_Machine
             int bettingint = 0;
             int jackpot = 100;
             int counter = 0;
+
             while (jackpot != 0)
             {
+                jOutput = GenerateSlots();
+                UIMethods.DisplaySlotMachine(jOutput);
 
                 Random randNum = new Random();
                 UIMethods.WelcomeMessage(jackpot);
@@ -112,7 +115,6 @@ namespace Slot_Machine
         public static int[][] GenerateSlots()
         {
             Random randNum = new Random();
-
             int min = 1;
             int max = 4;
             int[] slot = new int[3];
@@ -120,6 +122,7 @@ namespace Slot_Machine
             int[] Output2 = new int[3];
             int[] Output3 = new int[3];
             int[][] jOutput = new int[3][] { Output1, Output2, Output3 };
+            UIMethods.DisplaySlotMachine(jOutput);
             for (int y = 0; y < 3; y++)
             {
                 for (int i = 0; i < 3; i++)
