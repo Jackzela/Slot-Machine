@@ -21,65 +21,60 @@ namespace Slot_Machine
             int[][] jCombination = new int[3][] { combination1, combination2, combination3 };
             int min = 1;
             int max = 4;
-            string bettingstring = "";
-            int bettingint = 0;
+            string bettingString = "";
+            int bettingInt = 0;
             int jackpot = 100;
             int counter = 0;
 
             while (jackpot != 0)
             {
+                UIMethods.WelcomeMessage(jackpot);
                 jOutput = GenerateSlots();
                 UIMethods.DisplaySlotMachine(jOutput);
 
-                Random randNum = new Random();
-                UIMethods.WelcomeMessage(jackpot);
-                bettingint = UIMethods.getBetting();
-                jackpot += bettingint;
-                for (int y = 0; y < 3; y++)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        for (y = 0; y < 3; y++)
-                        {
-                            slot[i] = randNum.Next(min, max);
-                            jOutput[i][y] = slot[i];
-                            Console.Write($"{slot[i]} ");
 
-                        }
-                        Console.WriteLine();
-                    }
-                }
+                bettingInt = UIMethods.GetBetting();
+                jackpot += bettingInt;
+
 
                 int prize = 0;
 
                 //compare every line with the first combination
-                for (int i = 0; i < 3; i++)
+                private static bool checkFirstCombination (int [][]jOutput, [][]jCombination)
                 {
-                    if (jOutput[i][0] == jCombination[0][0] &&
-                        jOutput[i][1] == jCombination[0][1] &&
-                        jOutput[i][2] == jCombination[0][2])
+                    for (int i = 0; i < 3; i++)
                     {
-                        prize = prize + 1;
+                        if (jOutput[i][0] == jCombination[0][0] &&
+                            jOutput[i][1] == jCombination[0][1] &&
+                            jOutput[i][2] == jCombination[0][2])
+                        {
+                            prize = prize + 1;
 
+                        }
+
+                        if (jOutput[i][0] == jCombination[1][0] &&
+                            jOutput[i][1] == jCombination[1][1] &&
+                            jOutput[i][2] == jCombination[1][2])
+                        {
+                            prize = prize + 2;
+
+                        }
+
+                        if (jOutput[i][0] == jCombination[2][0] &&
+                            jOutput[i][1] == jCombination[2][1] &&
+                            jOutput[i][2] == jCombination[2][2])
+                        {
+                            prize = prize + 3;
+
+                        }
                     }
-
-                    if (jOutput[i][0] == jCombination[1][0] &&
-                        jOutput[i][1] == jCombination[1][1] &&
-                        jOutput[i][2] == jCombination[1][2])
-                    {
-                        prize = prize + 2;
-
-                    }
-
-                    if (jOutput[i][0] == jCombination[2][0] &&
-                        jOutput[i][1] == jCombination[2][1] &&
-                        jOutput[i][2] == jCombination[2][2])
-                    {
-                        prize = bettingint + 3;
-
-                    }
+              
 
                 }
+                bool isJackpot = CheckJackpot(jOutput, jCombination);
+
+                if (isJackpot == true)
+                    prize = jackpot;
                 for (int i = 0; i < 3; i++)
                 {
 
@@ -112,6 +107,31 @@ namespace Slot_Machine
             }
         }
 
+        private static bool CheckJackpot(int[][] jOutput, int[][] jCombination)
+        {
+            int counter = 0;
+            bool isJackpot = false;
+            for (int i = 0; i < 3; i++)
+            {
+
+                for (int j = 0; j < 3; j++)//with this loop the program check if user's won the jackpot
+                {
+                    if (jOutput[i][j] == jCombination[i][j])
+                    {
+                        counter++;
+                    }
+                }
+                if (counter == 9)
+                {
+                    isJackpot = true;
+                }
+    
+                counter = 0;
+            }
+
+            return isJackpot;
+        }
+
         public static int[][] GenerateSlots()
         {
             Random randNum = new Random();
@@ -122,7 +142,7 @@ namespace Slot_Machine
             int[] Output2 = new int[3];
             int[] Output3 = new int[3];
             int[][] jOutput = new int[3][] { Output1, Output2, Output3 };
-            UIMethods.DisplaySlotMachine(jOutput);
+            //UIMethods.DisplaySlotMachine(jOutput);
             for (int y = 0; y < 3; y++)
             {
                 for (int i = 0; i < 3; i++)
