@@ -33,6 +33,7 @@ namespace Slot_Machine
                 UIMethods.DisplaySlotMachine(jOutput);
 
 
+
                 bettingInt = UIMethods.GetBetting();
                 jackpot += bettingInt;
 
@@ -40,17 +41,22 @@ namespace Slot_Machine
                 int prize = 0;
 
                 //compare every line with the first combination
-                private static bool checkFirstCombination (int [][]jOutput, [][]jCombination)
+
                 {
+
+
                     for (int i = 0; i < 3; i++)
                     {
                         if (jOutput[i][0] == jCombination[0][0] &&
                             jOutput[i][1] == jCombination[0][1] &&
                             jOutput[i][2] == jCombination[0][2])
                         {
+
                             prize = prize + 1;
 
+
                         }
+
 
                         if (jOutput[i][0] == jCombination[1][0] &&
                             jOutput[i][1] == jCombination[1][1] &&
@@ -66,9 +72,10 @@ namespace Slot_Machine
                         {
                             prize = prize + 3;
 
+
                         }
+
                     }
-              
 
                 }
                 bool isJackpot = CheckJackpot(jOutput, jCombination);
@@ -125,7 +132,7 @@ namespace Slot_Machine
                 {
                     isJackpot = true;
                 }
-    
+
                 counter = 0;
             }
 
@@ -158,8 +165,29 @@ namespace Slot_Machine
             }
             return jOutput;
         }
+        public static bool checkFirstLine(int[][] jOutput, int[][] jCombination)
+        {
+            bool isFirstLine = false;
+            for (int i = 0; i < 3; i++)
+            {
+                if (jOutput[i][0] == jCombination[0][0] &&
+                    jOutput[i][1] == jCombination[0][1] &&
+                    jOutput[i][2] == jCombination[0][2])
+                {
+
+                    isFirstLine = true;
+
+
+                }
+                return isFirstLine;
+            }
+        }
+
     }
 }
+
+
+
 
 
 
