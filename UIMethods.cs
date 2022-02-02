@@ -38,6 +38,24 @@ namespace Slot_Machine
             }
 
         }
+        public static int displayPrize(int prize)
+        {
+            if (prize == 0)
+            {
+                Console.WriteLine("You Lose");
+            }
+            else
+            {
+                Console.WriteLine($"You win{prize} €!");
 
+            }
+            return prize;
+        }
+public static int showTheJackpot (int jackpot)
+    {
+            Console.WriteLine($"{jackpot}");
+                return jackpot;
+        }
     }
+
 }

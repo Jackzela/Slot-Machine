@@ -25,12 +25,18 @@ namespace Slot_Machine
             int bettingInt = 0;
             int jackpot = 100;
             int counter = 0;
-
+            int prize = 0;
             while (jackpot != 0)
             {
                 UIMethods.WelcomeMessage(jackpot);
                 jOutput = GenerateSlots();
+                UIMethods.GetBetting();
                 UIMethods.DisplaySlotMachine(jOutput);
+                UIMethods.displayPrize(prize);
+                jackpot = calculateJackpot(jackpot, prize);
+                UIMethods.showTheJackpot(jackpot);
+
+
 
 
 
@@ -38,46 +44,11 @@ namespace Slot_Machine
                 jackpot += bettingInt;
 
 
-                int prize = 0;
 
-                //compare every line with the first combination
+                bool firstLine = checkFirstLine(jOutput, jCombination);
+                bool secondLine = checkSecondLine(jOutput, jCombination);
+                bool thirtLine = checkThirthLine(jOutput, jCombination);
 
-                {
-
-
-                    for (int i = 0; i < 3; i++)
-                    {
-                        if (jOutput[i][0] == jCombination[0][0] &&
-                            jOutput[i][1] == jCombination[0][1] &&
-                            jOutput[i][2] == jCombination[0][2])
-                        {
-
-                            prize = prize + 1;
-
-
-                        }
-
-
-                        if (jOutput[i][0] == jCombination[1][0] &&
-                            jOutput[i][1] == jCombination[1][1] &&
-                            jOutput[i][2] == jCombination[1][2])
-                        {
-                            prize = prize + 2;
-
-                        }
-
-                        if (jOutput[i][0] == jCombination[2][0] &&
-                            jOutput[i][1] == jCombination[2][1] &&
-                            jOutput[i][2] == jCombination[2][2])
-                        {
-                            prize = prize + 3;
-
-
-                        }
-
-                    }
-
-                }
                 bool isJackpot = CheckJackpot(jOutput, jCombination);
 
                 if (isJackpot == true)
@@ -181,6 +152,45 @@ namespace Slot_Machine
             }
             return isFirstLine;
         }
+        public static bool checkSecondLine(int[][] jOutput, int[][] jCombination)
+        {
+            bool isSecondLine = false;
+            for (int i = 0; i < 3; i++)
+            {
+                if (jOutput[i][0] == jCombination[1][0] &&
+                              jOutput[i][1] == jCombination[1][1] &&
+                              jOutput[i][2] == jCombination[1][2])
+                {
+                    isSecondLine = true;
+                }
+
+            }
+            return isSecondLine;
+        }
+        public static bool checkThirthLine(int[][] jOutput, int[][] jCombination)
+        {
+            bool isThirthLine = false;
+            for (int i = 0; i < 3; i++)
+            {
+                if (jOutput[i][0] == jCombination[2][0] &&
+     jOutput[i][1] == jCombination[2][1] &&
+     jOutput[i][2] == jCombination[2][2])
+                {
+                    isThirthLine = true;
+                }
+
+            }
+            return isThirthLine;
+        }
+        public static int calculateJackpot(int jackpot, int prize)
+        {
+            int total = jackpot + prize;
+
+            return total;
+
+
+        }
+
     }
 
 }
