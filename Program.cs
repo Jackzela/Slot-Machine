@@ -176,15 +176,15 @@ namespace Slot_Machine
                 {
 
                     isFirstLine = true;
-
-
                 }
-                return isFirstLine;
-            }
-        }
 
+            }
+            return isFirstLine;
+        }
     }
+
 }
+
 
 
 
