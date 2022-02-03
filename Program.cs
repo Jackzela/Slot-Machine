@@ -26,28 +26,23 @@ namespace Slot_Machine
             int jackpot = 100;
             int counter = 0;
             int prize = 0;
+            bool firstLine = checkFirstLine(jOutput, jCombination, bettingInt);
+            bool secondLine = checkSecondLine(jOutput, jCombination);
+            bool thirtLine = checkThirthLine(jOutput, jCombination);
+
             while (jackpot != 0)
             {
                 UIMethods.WelcomeMessage(jackpot);
                 jOutput = GenerateSlots();
                 UIMethods.GetBetting();
                 UIMethods.DisplaySlotMachine(jOutput);
-                UIMethods.displayPrize(prize);
                 jackpot = calculateJackpot(jackpot, prize);
                 UIMethods.showTheJackpot(jackpot);
-
-
-
-
-
+                prize = calculatePrize(bettingInt,firstLine,secondLine, thirtLine);
+                UIMethods.displayPrize(prize);
                 bettingInt = UIMethods.GetBetting();
                 jackpot += bettingInt;
-
-
-
-                bool firstLine = checkFirstLine(jOutput, jCombination);
-                bool secondLine = checkSecondLine(jOutput, jCombination);
-                bool thirtLine = checkThirthLine(jOutput, jCombination);
+                jackpot = calculateNewJackPot(jackpot,prize);
 
                 bool isJackpot = CheckJackpot(jOutput, jCombination);
 
@@ -84,7 +79,6 @@ namespace Slot_Machine
 
             }
         }
-
         private static bool CheckJackpot(int[][] jOutput, int[][] jCombination)
         {
             int counter = 0;
@@ -136,9 +130,10 @@ namespace Slot_Machine
             }
             return jOutput;
         }
-        public static bool checkFirstLine(int[][] jOutput, int[][] jCombination)
+        public static bool checkFirstLine(int[][] jOutput, int[][] jCombination, int bettingint)
         {
             bool isFirstLine = false;
+
             for (int i = 0; i < 3; i++)
             {
                 if (jOutput[i][0] == jCombination[0][0] &&
@@ -147,10 +142,12 @@ namespace Slot_Machine
                 {
 
                     isFirstLine = true;
+
                 }
 
             }
             return isFirstLine;
+
         }
         public static bool checkSecondLine(int[][] jOutput, int[][] jCombination)
         {
@@ -177,6 +174,7 @@ namespace Slot_Machine
      jOutput[i][2] == jCombination[2][2])
                 {
                     isThirthLine = true;
+
                 }
 
             }
@@ -190,7 +188,28 @@ namespace Slot_Machine
 
 
         }
+        public static int calculatePrize(int bettingInt, bool checkFirstLine, bool checkSecondLine, bool checkThirthLine)
+        {
+            int prize = 0;
+            if (checkFirstLine = true)
+            {
+                prize = bettingInt + 1;
+            }
+            if (checkSecondLine = true)
+            {
+                prize = bettingInt + 2;
+            }
+            if (checkThirthLine = true)
+            {
+                prize = bettingInt + 3;
+            }
+            return prize;
 
+        }
+        public static int calculateNewJackPot (int jackpot, int prize)
+        {
+return jackpot - prize;
+        }
     }
 
 }
