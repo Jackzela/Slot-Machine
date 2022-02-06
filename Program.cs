@@ -10,7 +10,6 @@ namespace Slot_Machine
     {
         static void Main(string[] args)
         {
-            int[] slot = new int[3];
             int[] Output1 = new int[3];
             int[] Output2 = new int[3];
             int[] Output3 = new int[3];
@@ -19,16 +18,13 @@ namespace Slot_Machine
             int[] combination2 = new int[3] { 2, 2, 2 };
             int[] combination3 = new int[3] { 3, 3, 3 };
             int[][] jCombination = new int[3][] { combination1, combination2, combination3 };
-            int min = 1;
-            int max = 4;
-            string bettingString = "";
             int bettingInt = 0;
             int jackpot = 100;
             int counter = 0;
             int prize = 0;
-            bool firstLine = checkFirstLine(jOutput, jCombination, bettingInt);
-            bool secondLine = checkSecondLine(jOutput, jCombination);
-            bool thirtLine = checkThirthLine(jOutput, jCombination);
+            bool firstLine = CheckLine(jOutput, jCombination,0);
+            bool secondLine = CheckLine(jOutput, jCombination,1);
+            bool thirtLine = CheckLine(jOutput, jCombination, 2);
 
             while (jackpot != 0)
             {
@@ -38,10 +34,10 @@ namespace Slot_Machine
                 UIMethods.DisplaySlotMachine(jOutput);
                 jackpot = calculateJackpot(jackpot, prize);
                 UIMethods.showTheJackpot(jackpot);
-                prize = calculatePrize(bettingInt,firstLine,secondLine, thirtLine);
+                prize = calculatePrize(bettingInt, firstLine, secondLine, thirtLine);
                 UIMethods.displayPrize(prize);
                 jackpot += bettingInt;
-                jackpot = calculateNewJackPot(jackpot,prize);
+                jackpot = calculateNewJackPot(jackpot, prize);
 
                 bool isJackpot = CheckJackpot(jOutput, jCombination);
 
@@ -129,56 +125,25 @@ namespace Slot_Machine
             }
             return jOutput;
         }
-        public static bool checkFirstLine(int[][] jOutput, int[][] jCombination, int bettingint)
+        public static bool CheckLine(int[][] jOutput, int[][] jCombination, int lineNumber)
         {
+           
             bool isFirstLine = false;
 
             for (int i = 0; i < 3; i++)
             {
-                if (jOutput[i][0] == jCombination[0][0] &&
-                    jOutput[i][1] == jCombination[0][1] &&
-                    jOutput[i][2] == jCombination[0][2])
+                if (jOutput[i][0] == jCombination[lineNumber][0] &&
+                    jOutput[i][1] == jCombination[lineNumber][1] &&
+                    jOutput[i][2] == jCombination[lineNumber][2])
                 {
-
                     isFirstLine = true;
-
                 }
 
             }
             return isFirstLine;
-
         }
-        public static bool checkSecondLine(int[][] jOutput, int[][] jCombination)
-        {
-            bool isSecondLine = false;
-            for (int i = 0; i < 3; i++)
-            {
-                if (jOutput[i][0] == jCombination[1][0] &&
-                              jOutput[i][1] == jCombination[1][1] &&
-                              jOutput[i][2] == jCombination[1][2])
-                {
-                    isSecondLine = true;
-                }
 
-            }
-            return isSecondLine;
-        }
-        public static bool checkThirthLine(int[][] jOutput, int[][] jCombination)
-        {
-            bool isThirthLine = false;
-            for (int i = 0; i < 3; i++)
-            {
-                if (jOutput[i][0] == jCombination[2][0] &&
-     jOutput[i][1] == jCombination[2][1] &&
-     jOutput[i][2] == jCombination[2][2])
-                {
-                    isThirthLine = true;
-
-                }
-
-            }
-            return isThirthLine;
-        }
+    
         public static int calculateJackpot(int jackpot, int prize)
         {
             int total = jackpot + prize;
@@ -190,24 +155,24 @@ namespace Slot_Machine
         public static int calculatePrize(int bettingInt, bool checkFirstLine, bool checkSecondLine, bool checkThirthLine)
         {
             int prize = 0;
-            if (checkFirstLine = true)
+            if (checkFirstLine == true)
             {
                 prize = bettingInt + 1;
             }
-            if (checkSecondLine = true)
+            if (checkSecondLine == true)
             {
                 prize = bettingInt + 2;
             }
-            if (checkThirthLine = true)
+            if (checkThirthLine == true)
             {
                 prize = bettingInt + 3;
             }
             return prize;
 
         }
-        public static int calculateNewJackPot (int jackpot, int prize)
+        public static int calculateNewJackPot(int jackpot, int prize)
         {
-return jackpot - prize;
+            return jackpot - prize;
         }
     }
 
