@@ -33,14 +33,13 @@ namespace Slot_Machine
             while (jackpot != 0)
             {
                 UIMethods.WelcomeMessage(jackpot);
+                bettingInt = UIMethods.GetBetting();
                 jOutput = GenerateSlots();
-                UIMethods.GetBetting();
                 UIMethods.DisplaySlotMachine(jOutput);
                 jackpot = calculateJackpot(jackpot, prize);
                 UIMethods.showTheJackpot(jackpot);
                 prize = calculatePrize(bettingInt,firstLine,secondLine, thirtLine);
                 UIMethods.displayPrize(prize);
-                bettingInt = UIMethods.GetBetting();
                 jackpot += bettingInt;
                 jackpot = calculateNewJackPot(jackpot,prize);
 
